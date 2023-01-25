@@ -1,4 +1,8 @@
 import utils
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+from pyspark.sql import Window
+
 
 class AccidentAnalysis:
   def __init__(self, config_file, utils): 
@@ -113,6 +117,11 @@ class AccidentAnalysis:
       self.write_csv_data(df, output)
       
 if __name__ == '__main__':
+  spark = SparkSession.builder\
+        .master("local")\
+        .appName("VehicleAccidentAnalysis")\
+        .config('spark.ui.port', '4050')\
+        .getOrCreate()
   utility = Utils()
   analysis = AccidentAnalysis("./config.yaml", utility)
   output_paths=utility.read_yaml("./config.yaml").get("OUTPUT_FILES")
@@ -125,3 +134,4 @@ if __name__ == '__main__':
   analysis.get_top5_zipcodes_with_highest_num_crashes_with_alcohol_as_factor(output_paths.get(6))
   analysis.get_crashid_with_no_damage(output_paths.get(7))
   analysis.get_top5_vehicle_brand(output_paths.get(8))
+  spark.stop()
