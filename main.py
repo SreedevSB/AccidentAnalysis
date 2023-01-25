@@ -1,4 +1,4 @@
-import utils
+from utils import Utils
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql import Window
@@ -123,8 +123,8 @@ if __name__ == '__main__':
         .config('spark.ui.port', '4050')\
         .getOrCreate()
   utility = Utils()
-  analysis = AccidentAnalysis("./config.yaml", utility)
-  output_paths=utility.read_yaml("./config.yaml").get("OUTPUT_FILES")
+  analysis = AccidentAnalysis("./config/config.yaml", utility)
+  output_paths=utility.read_yaml("./config/config.yaml").get("OUTPUT_FILES")
 
   analysis.get_num_crashes_with_male_people(output_paths.get(1))
   analysis.get_num_twowheelers_booked(output_paths.get(2))

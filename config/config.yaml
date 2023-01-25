@@ -1,0 +1,17 @@
+INPUT_FILES:
+ Person: data/Primary_Person_use.csv
+ Units: data/Units_use.csv
+ Charges: data/Charges_use.csv
+ Damages: data/Damages_use.csv
+ Endorses: data/Endorse_use.csv
+ Restrict: data/Restrict_use.csv
+
+OUTPUT_FILES:
+ 1: output/1.csv
+ 2: output/2.csv
+ 3: output/3.csv
+ 4: output/4.csv
+ 5: output/5.csv
+ 6: output/6.csv
+ 7: output/7.csv
+ 8: output/8.csv
